@@ -1,10 +1,27 @@
-./bin/Linux/main: src/main.cpp src/glad.c include/utils.h
+./bin/Linux/main_original: src/main_original.cpp src/glad.c include/utils.h
 	mkdir -p bin/Linux
-	g++ -std=c++11 -Wall -Wno-unused-function -g -I ./include/ -o ./bin/Linux/main src/glad.c src/main.cpp ./lib-linux/libglfw3.a -lrt -lm -ldl -lX11 -lpthread -lXrandr -lXinerama -lXxf86vm -lXcursor
+	g++ -std=c++11 -Wall -Wno-unused-function -g -I ./include/ -o ./bin/Linux/main_original src/glad.c src/main_original.cpp ./lib-linux/libglfw3.a -lrt -lm -ldl -lX11 -lpthread -lXrandr -lXinerama -lXxf86vm -lXcursor
+
+./bin/Linux/main_fan: src/main_fan.cpp src/glad.c include/utils.h
+	mkdir -p bin/Linux
+	g++ -std=c++11 -Wall -Wno-unused-function -g -I ./include/ -o ./bin/Linux/main_fan src/glad.c src/main_fan.cpp ./lib-linux/libglfw3.a -lrt -lm -ldl -lX11 -lpthread -lXrandr -lXinerama -lXxf86vm -lXcursor
+
+./bin/Linux/main_strip: src/main_strip.cpp src/glad.c include/utils.h
+	mkdir -p bin/Linux
+	g++ -std=c++11 -Wall -Wno-unused-function -g -I ./include/ -o ./bin/Linux/main_strip src/glad.c src/main_strip.cpp ./lib-linux/libglfw3.a -lrt -lm -ldl -lX11 -lpthread -lXrandr -lXinerama -lXxf86vm -lXcursor
+
 
 .PHONY: clean run
 clean:
-	rm -f bin/Linux/main
+	rm -f bin/Linux/main_original
+		rm -f bin/Linux/main_strip
+	rm -f bin/Linux/main_fan
 
-run: ./bin/Linux/main
-	cd bin/Linux && ./main
+original: ./bin/Linux/main_original
+	cd bin/Linux && ./main_original
+
+fan: ./bin/Linux/main_fan
+	cd bin/Linux && ./main_fan
+
+strip: ./bin/Linux/main_strip
+	cd bin/Linux && ./main_strip
