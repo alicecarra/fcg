@@ -10,6 +10,11 @@
 	mkdir -p bin/Linux
 	g++ -std=c++11 -Wall -Wno-unused-function -g -I ./include/ -o ./bin/Linux/main_strip src/glad.c src/main_strip.cpp ./lib-linux/libglfw3.a -lrt -lm -ldl -lX11 -lpthread -lXrandr -lXinerama -lXxf86vm -lXcursor
 
+./bin/Linux/main_counter: src/main_counter.cpp src/glad.c include/utils.h
+	mkdir -p bin/Linux
+	g++ -std=c++11 -Wall -Wno-unused-function -g -I ./include/ -o ./bin/Linux/main_counter src/glad.c src/main_counter.cpp ./lib-linux/libglfw3.a -lrt -lm -ldl -lX11 -lpthread -lXrandr -lXinerama -lXxf86vm -lXcursor
+
+
 
 .PHONY: clean run
 clean:
@@ -25,3 +30,6 @@ fan: ./bin/Linux/main_fan
 
 strip: ./bin/Linux/main_strip
 	cd bin/Linux && ./main_strip
+
+counter: ./bin/Linux/main_counter
+	cd bin/Linux && ./main_counter

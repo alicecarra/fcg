@@ -10,7 +10,7 @@
 
 // Arquivos "headers" padrões de C podem ser incluídos em um
 // programa C++, sendo necessário somente adicionar o caractere
-// "c" antes de seu nome, e remover o sufixo ".h". Exemplo:
+// "c" antes de Alice Carra, e remover o sufixo ".h". Exemplo:
 //    #include <stdio.h> // Em C
 //  vira
 //    #include <cstdio> // Em C++
@@ -78,7 +78,7 @@ int main()
     // Criamos uma janela do sistema operacional, com 500 colunas e 500 linhas
     // de pixels, e com título "INF01047 ...".
     GLFWwindow *window;
-    window = glfwCreateWindow(500, 500, "INF01047 - Seu Cartao - Seu Nome", NULL, NULL);
+    window = glfwCreateWindow(500, 500, "INF01047 - 00303139 - Alice Carra", NULL, NULL);
     if (!window)
     {
         glfwTerminate();
@@ -209,7 +209,7 @@ int main_original()
     // Criamos uma janela do sistema operacional, com 500 colunas e 500 linhas
     // de pixels, e com título "INF01047 ...".
     GLFWwindow *window;
-    window = glfwCreateWindow(500, 500, "INF01047 - Seu Cartao - Seu Nome", NULL, NULL);
+    window = glfwCreateWindow(500, 500, "INF01047 - 00303139 - Alice Carra", NULL, NULL);
     if (!window)
     {
         glfwTerminate();
