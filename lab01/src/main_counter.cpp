@@ -139,12 +139,12 @@ int main()
             if (bit == 0)
             {
                 vertex_array_object_id[i] = BuildZero(number_of_digits - 1 - i);
-                number_of_intex[i] = 34 * 4;
+                number_of_intex[i] = 34;
             }
             else
             {
                 vertex_array_object_id[i] = BuildOne(number_of_digits - 1 - i);
-                number_of_intex[i] = 6 * 4;
+                number_of_intex[i] = 5;
             }
         }
 
