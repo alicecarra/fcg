@@ -64,9 +64,9 @@ glm::mat4 Matrix_Translate(float tx, float ty, float tz)
     return Matrix(
         // PREENCHA AQUI A MATRIZ DE TRANSLAÇÃO (3D) EM COORD. HOMOGÊNEAS
         // UTILIZANDO OS PARÂMETROS tx, ty e tz
-        0.0f, 0.0f, 0.0f, tx,  // LINHA 1
-        0.0f, 0.0f, 0.0f, ty,  // LINHA 2
-        0.0f, 0.0f, 0.0f, tz,  // LINHA 3
+        1.0f, 0.0f, 0.0f, tx,  // LINHA 1
+        0.0f, 1.0f, 0.0f, ty,  // LINHA 2
+        0.0f, 0.0f, 1.0f, tz,  // LINHA 3
         0.0f, 0.0f, 0.0f, 1.0f // LINHA 4
     );
 }
@@ -280,11 +280,10 @@ glm::mat4 Matrix_Orthographic(float l, float r, float b, float t, float n, float
     glm::mat4 M = Matrix(
         // PREENCHA AQUI A MATRIZ M DE PROJEÇÃO ORTOGRÁFICA (3D) UTILIZANDO OS
         // PARÂMETROS l,r,b,t,n,f
-        0.0f, 0.0f, 0.0f, 0.0f, // LINHA 1
-        0.0f, 0.0f, 0.0f, 0.0f, // LINHA 2
-        0.0f, 0.0f, 0.0f, 0.0f, // LINHA 3
-        0.0f, 0.0f, 0.0f, 0.0f  // LINHA 4
-    );
+        2.0 / (r - l), 0.0f, 0.0f, -(r + l) / (r - l), // LINHA 1
+        0.0f, 2.0 / (t - b), 0.0f, -(t + b) / (t - b), // LINHA 2
+        0.0f, 0.0f, 2.0 / (f - n), -(f + n) / (f - n), // LINHA 3
+        0.0f, 0.0f, 0.0f, 1.0f);
 
     return M;
 }
@@ -293,17 +292,17 @@ glm::mat4 Matrix_Orthographic(float l, float r, float b, float t, float n, float
 glm::mat4 Matrix_Perspective(float field_of_view, float aspect, float n, float f)
 {
     float t = fabs(n) * tanf(field_of_view / 2.0f);
-    float b = /* PREENCHA AQUI o parâmetro b */;
+    float b = -t /* PREENCHA AQUI o parâmetro b */;
     float r = t * aspect;
-    float l = /* PREENCHA AQUI o parâmetro l */;
+    float l = -r /* PREENCHA AQUI o parâmetro l */;
 
     glm::mat4 P = Matrix(
         // PREENCHA AQUI A MATRIZ P DE PROJEÇÃO PERSPECTIVA (3D) UTILIZANDO OS
         // PARÂMETROS n e f.
-        0.0f, 0.0f, 0.0f, 0.0f, // LINHA 1
-        0.0f, 0.0f, 0.0f, 0.0f, // LINHA 2
-        0.0f, 0.0f, 0.0f, 0.0f, // LINHA 3
-        0.0f, 0.0f, 0.0f, 0.0f  // LINHA 4
+        n, 0.0f, 0.0f, 0.0f,       // LINHA 1
+        0.0f, n, 0.0f, 0.0f,       // LINHA 2
+        0.0f, 0.0f, n + f, -f * n, // LINHA 3
+        0.0f, 0.0f, 1.0f, 0.0f     // LINHA 4
     );
 
     // A matriz M é a mesma computada acima em Matrix_Orthographic().
